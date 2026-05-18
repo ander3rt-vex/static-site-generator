@@ -3,11 +3,13 @@ export interface Props {
   title: string;
   description?: string;
   bgImage?: string;
+  activePage?: 'home' | 'livestreams';
 }
 const {
   title,
-  description = 'Aurora Watch — Real-time aurora tracking, livestreams, and space weather data.',
+  description = 'Aurora Watch — Kp index, space weather tracking, and live aurora camera streams.',
   bgImage,
+  activePage = 'home',
 } = Astro.props;
 const base = import.meta.env.BASE_URL;
 ---
@@ -25,304 +27,218 @@ const base = import.meta.env.BASE_URL;
     <title>{title} | Aurora Watch</title>
   </head>
   <body>
-    <div class={`site-wrapper ${bgImage ? 'has-photo-bg' : ''}`}>
 
-      <!-- Photo background (Figma images) -->
-      {bgImage && (
-        <div class="photo-bg" style={`background-image: url('${bgImage}')`}></div>
-      )}
+    <!-- Full-bleed background photo -->
+    {bgImage && <div class="page-bg" style={`background-image:url('${bgImage}')`}></div>}
 
-      <!-- Animated aurora fallback (used when no photo) -->
-      {!bgImage && (
-        <div class="aurora-bg">
-          <div class="aurora-layer aurora-1"></div>
-          <div class="aurora-layer aurora-2"></div>
-          <div class="aurora-layer aurora-3"></div>
-          <div class="stars"></div>
-        </div>
-      )}
+    <!-- Subtle dark veil so text stays readable -->
+    <div class="page-veil"></div>
 
-      <!-- Dark overlay for readability -->
-      <div class="overlay"></div>
+    <!-- ─── HEADER (matches Figma Desktop-1 header zone) ─── -->
+    <header class="site-header">
+      <a href={`${base}`} class="logo">AURORA WATCH</a>
+      <nav class="site-nav">
+        <a href={`${base}`}          class={`nav-link ${activePage==='home'        ? 'nav-active':''}`}>HOME</a>
+        <a href={`${base}livestreams`} class={`nav-link ${activePage==='livestreams' ? 'nav-active':''}`}>LIVESTREAMS</a>
+      </nav>
+    </header>
 
-      <header class="site-header">
-        <a href={`${base}`} class="site-title">AURORA WATCH</a>
-        <nav class="site-nav">
-          <a href={`${base}`} class="nav-link">LIVESTREAMS</a>
-          <a href={`${base}about`} class="nav-link">ABOUT</a>
-        </nav>
-      </header>
+    <!-- Page slot -->
+    <main class="site-main">
+      <slot />
+    </main>
 
-      <main class="site-main">
-        <slot />
-      </main>
+    <footer class="site-footer">
+      <span>Aurora Watch — educational use only</span>
+      <span>Data: <a href="https://www.swpc.noaa.gov/" target="_blank" rel="noopener">NOAA SWPC</a></span>
+    </footer>
 
-      <footer class="site-footer">
-        <div class="footer-inner">
-          <p>Data from <a href="https://www.swpc.noaa.gov/" target="_blank" rel="noopener">NOAA SWPC</a> · Photos from Figma / <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a></p>
-          <p>Aurora Watch &copy; {new Date().getFullYear()} — Educational use only</p>
-        </div>
-      </footer>
-    </div>
   </body>
 </html>
 
 <style is:global>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ═══════════════════════════════════════════
+   FIGMA COLOR PALETTE
+   #19191D  page background
+   #101431  card / nav-bar background
+   #FFFFFF  text & borders
+   #5F37B4  purple accent
+   #934284  mauve accent
+   #478F10  green accent
+═══════════════════════════════════════════ */
+:root {
+  --bg:          #19191D;
+  --card:        #101431;
+  --white:       #FFFFFF;
+  --purple:      #5F37B4;
+  --mauve:       #934284;
+  --green:       #478F10;
 
-  :root {
-    --bg-dark:      #19191d;
-    --bg-card:      #101431;
-    --border-white: rgba(255,255,255,1);
-    --border-dim:   rgba(255,255,255,0.22);
-    --border-glow:  rgba(120,80,255,0.55);
-    --text-white:   #ffffff;
-    --text-muted:   rgba(255,255,255,0.60);
-    --text-dim:     rgba(255,255,255,0.35);
-    --accent-green:   #39ff8a;
-    --accent-purple:  #a855f7;
-    --accent-cyan:    #22d3ee;
-    --accent-magenta: #e879f9;
-    --accent-yellow:  #fbbf24;
-    --accent-red:     #f87171;
-    --font-display: 'Karantina', serif;
-    --font-body:    'Inter', sans-serif;
-  }
+  /* Derived helper tints */
+  --purple-glow: rgba(95,55,180,.55);
+  --mauve-glow:  rgba(147,66,132,.55);
+  --green-glow:  rgba(71,143,16,.55);
+  --white-dim:   rgba(255,255,255,.6);
+  --white-faint: rgba(255,255,255,.2);
 
-  html { scroll-behavior: smooth; }
+  --font-display: 'Karantina', serif;
+  --font-body:    'Inter', sans-serif;
+}
 
-  body {
-    background: var(--bg-dark);
-    color: var(--text-white);
-    font-family: var(--font-body);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
-  /* ── Site wrapper ── */
-  .site-wrapper {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
-  /* ── Photo background (Figma images) ── */
-  .photo-bg {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-  }
+/* ─── Background photo ─── */
+.page-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
 
-  /* ── Dark overlay ── */
-  .overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 1;
-    background: rgba(10,11,20,0.52);
-  }
+.page-veil {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background: rgba(13, 12, 22, 0.48);
+}
 
-  .has-photo-bg .overlay {
-    background: rgba(10,11,20,0.58);
-  }
+/* ─── Header ─── */
+.site-header {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 40px 50px 0;
+}
 
-  /* ── Animated aurora fallback ── */
-  .aurora-bg {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    overflow: hidden;
-    pointer-events: none;
-  }
+.logo {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 8.9vw, 128px);
+  font-weight: 400;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: .03em;
+  line-height: 1;
+  /* subtle text shadow so it pops off the photo */
+  text-shadow: 0 2px 32px rgba(0,0,0,.7), 0 0 60px rgba(95,55,180,.35);
+}
 
-  .stars {
-    position: absolute;
-    inset: 0;
-    background-image:
-      radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,.8) 0%, transparent 100%),
-      radial-gradient(1px 1px at 25% 35%, rgba(255,255,255,.6) 0%, transparent 100%),
-      radial-gradient(1.5px 1.5px at 40% 8%, rgba(255,255,255,.9) 0%, transparent 100%),
-      radial-gradient(1px 1px at 55% 20%, rgba(255,255,255,.7) 0%, transparent 100%),
-      radial-gradient(1px 1px at 70% 5%, rgba(255,255,255,.8) 0%, transparent 100%),
-      radial-gradient(1.5px 1.5px at 80% 28%, rgba(255,255,255,.6) 0%, transparent 100%),
-      radial-gradient(1px 1px at 15% 50%, rgba(255,255,255,.5) 0%, transparent 100%),
-      radial-gradient(1px 1px at 60% 45%, rgba(255,255,255,.4) 0%, transparent 100%),
-      radial-gradient(1px 1px at 85% 55%, rgba(255,255,255,.7) 0%, transparent 100%);
-  }
+.site-nav {
+  display: flex;
+  gap: 40px;
+  padding-top: 18px; /* vertically align with top of logo cap */
+}
 
-  .aurora-layer {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    mix-blend-mode: screen;
-    animation: aurora-drift 18s ease-in-out infinite;
-  }
+.nav-link {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 4.4vw, 64px);
+  font-weight: 400;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: .04em;
+  line-height: 1;
+  transition: color .2s;
+  position: relative;
+}
 
-  .aurora-1 {
-    width: 120%; height: 500px; top: -100px; left: -20%;
-    background: radial-gradient(ellipse, rgba(57,255,138,.18) 0%, rgba(34,211,238,.08) 50%, transparent 70%);
-    animation-duration: 22s;
-  }
-  .aurora-2 {
-    width: 100%; height: 600px; top: -150px; right: -10%;
-    background: radial-gradient(ellipse, rgba(168,85,247,.2) 0%, rgba(232,121,249,.08) 50%, transparent 70%);
-    animation-duration: 18s; animation-delay: -6s; animation-direction: reverse;
-  }
-  .aurora-3 {
-    width: 80%; height: 400px; top: 0; left: 20%;
-    background: radial-gradient(ellipse, rgba(34,211,238,.12) 0%, rgba(57,255,138,.06) 50%, transparent 70%);
-    animation-duration: 25s; animation-delay: -12s;
-  }
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--green), var(--purple));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s;
+}
 
-  @keyframes aurora-drift {
-    0%,100% { transform: translateY(0) scaleX(1); opacity: .7; }
-    25%      { transform: translateY(40px) scaleX(1.05); opacity: 1; }
-    50%      { transform: translateY(20px) scaleX(.98); opacity: .85; }
-    75%      { transform: translateY(-20px) scaleX(1.02); opacity: .9; }
-  }
+.nav-link:hover { color: rgba(255,255,255,.75); }
+.nav-link:hover::after,
+.nav-active::after { transform: scaleX(1); }
 
-  /* ── Header ── */
-  .site-header {
-    position: relative;
-    z-index: 10;
-    padding: 40px 50px 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
+/* ─── Main ─── */
+.site-main {
+  position: relative;
+  z-index: 10;
+  flex: 1;
+}
 
-  .site-title {
-    font-family: var(--font-display);
-    font-size: clamp(56px, 9vw, 128px);
-    font-weight: 400;
-    color: var(--text-white);
-    text-decoration: none;
-    letter-spacing: 0.03em;
-    line-height: 1;
-    text-shadow: 0 2px 40px rgba(0,0,0,.6);
-    display: block;
-  }
+/* ─── Footer ─── */
+.site-footer {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 16px 50px;
+  font-size: 12px;
+  color: var(--white-dim);
+  border-top: 1px solid var(--white-faint);
+  background: rgba(13,12,22,.55);
+  backdrop-filter: blur(10px);
+}
 
-  .site-nav {
-    display: flex;
-    gap: 44px;
-    margin-top: 4px;
-  }
+.site-footer a { color: rgba(71,143,16,.9); text-decoration: none; }
+.site-footer a:hover { text-decoration: underline; }
 
-  .nav-link {
-    font-family: var(--font-display);
-    font-size: clamp(28px, 4.5vw, 64px);
-    font-weight: 400;
-    color: var(--text-white);
-    text-decoration: none;
-    letter-spacing: 0.04em;
-    line-height: 1;
-    position: relative;
-    transition: color .2s;
-  }
+/* ─── Shared card ─── */
+.card {
+  background: var(--card);
+  border: 1px solid var(--white-faint);
+  border-radius: 3px;
+  padding: 22px;
+}
 
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -3px; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent-green), var(--accent-purple));
-    transform: scaleX(0);
-    transition: transform .3s;
-    transform-origin: left;
-  }
+/* ─── Badges ─── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 2px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
 
-  .nav-link:hover { color: var(--accent-green); }
-  .nav-link:hover::after,
-  .nav-link[aria-current="page"]::after { transform: scaleX(1); }
+.badge-green  { background: rgba(71,143,16,.2);  color: #78c42a; border: 1px solid rgba(71,143,16,.5); }
+.badge-purple { background: rgba(95,55,180,.2);  color: #9b7ef0; border: 1px solid rgba(95,55,180,.5); }
+.badge-mauve  { background: rgba(147,66,132,.2); color: #c977b7; border: 1px solid rgba(147,66,132,.5); }
+.badge-yellow { background: rgba(220,160,20,.2); color: #f0c040; border: 1px solid rgba(220,160,20,.5); }
+.badge-red    { background: rgba(180,40,40,.2);  color: #f07070; border: 1px solid rgba(180,40,40,.5); }
 
-  /* ── Main ── */
-  .site-main {
-    position: relative;
-    z-index: 10;
-    flex: 1;
-    padding: 28px 50px 56px;
-  }
+.pulse-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: pulse 1.6s ease-in-out infinite;
+}
 
-  /* ── Footer ── */
-  .site-footer {
-    position: relative;
-    z-index: 10;
-    padding: 18px 50px;
-    border-top: 1px solid rgba(255,255,255,.12);
-    background: rgba(10,11,20,.55);
-    backdrop-filter: blur(10px);
-  }
+@keyframes pulse {
+  0%,100% { opacity:1; transform:scale(1); }
+  50%      { opacity:.35; transform:scale(.65); }
+}
 
-  .footer-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 6px;
-    font-size: 12px;
-    color: var(--text-muted);
-  }
-
-  .footer-inner a { color: var(--accent-green); text-decoration: none; }
-  .footer-inner a:hover { text-decoration: underline; }
-
-  /* ── Shared card base ── */
-  .card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-dim);
-    border-radius: 3px;
-    padding: 22px;
-    position: relative;
-    overflow: hidden;
-    transition: border-color .3s, box-shadow .3s;
-  }
-
-  .card:hover {
-    border-color: var(--border-glow);
-    box-shadow: 0 0 28px rgba(120,80,255,.18);
-  }
-
-  /* ── Badges ── */
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    padding: 3px 9px;
-    border-radius: 2px;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-  }
-
-  .badge-green  { background:rgba(57,255,138,.15); color:var(--accent-green);   border:1px solid rgba(57,255,138,.4); }
-  .badge-yellow { background:rgba(251,191,36,.15); color:var(--accent-yellow);  border:1px solid rgba(251,191,36,.4); }
-  .badge-red    { background:rgba(248,113,113,.15);color:var(--accent-red);     border:1px solid rgba(248,113,113,.4); }
-  .badge-purple { background:rgba(168,85,247,.15); color:var(--accent-purple);  border:1px solid rgba(168,85,247,.4); }
-  .badge-cyan   { background:rgba(34,211,238,.15); color:var(--accent-cyan);    border:1px solid rgba(34,211,238,.4); }
-
-  .pulse-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: currentColor;
-    animation: pulse-anim 1.5s ease-in-out infinite;
-  }
-
-  @keyframes pulse-anim {
-    0%,100% { opacity:1; transform:scale(1); }
-    50%      { opacity:.4; transform:scale(.7); }
-  }
-
-  /* ── Responsive ── */
-  @media (max-width: 768px) {
-    .site-header { padding: 24px 20px 0; }
-    .site-main   { padding: 20px 20px 48px; }
-    .site-footer { padding: 16px 20px; }
-    .footer-inner { flex-direction: column; text-align: center; }
-    .site-nav { gap: 20px; }
-  }
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .site-header { padding: 24px 20px 0; flex-direction: column; gap: 12px; }
+  .site-main   { padding: 0; }
+  .site-footer { padding: 14px 20px; flex-direction: column; text-align: center; }
+  .site-nav    { gap: 20px; padding-top: 0; }
+}
 </style>
