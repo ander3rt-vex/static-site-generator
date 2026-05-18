@@ -1,0 +1,784 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout title="Livestreams">
+  <!-- Alert Banner -->
+  <div class="alert-banner">
+    <div class="alert-inner">
+      <span class="badge badge-green"><span class="pulse-dot"></span>LIVE</span>
+      <span class="alert-text">Geomagnetic Activity: <strong>Kp 3 — Minor</strong> · Solar Wind: 420 km/s · Bz: −4.2 nT</span>
+      <a href="https://www.swpc.noaa.gov/products/alerts-watches-and-warnings" target="_blank" rel="noopener" class="alert-link">NOAA Alerts →</a>
+    </div>
+  </div>
+
+  <!-- Space Weather Status Row -->
+  <section class="status-row">
+    <div class="status-card">
+      <div class="status-label">KP INDEX</div>
+      <div class="kp-meter">
+        <div class="kp-track">
+          {[1,2,3,4,5,6,7,8,9].map(n => (
+            <div class={`kp-bar ${n <= 3 ? 'kp-active' : ''} ${n >= 5 ? 'kp-warn' : ''} ${n >= 7 ? 'kp-danger' : ''}`}>
+              <span class="kp-label">{n}</span>
+            </div>
+          ))}
+        </div>
+        <div class="kp-value">3<span class="kp-unit">/ 9</span></div>
+      </div>
+      <div class="status-sub">Minor Storm Threshold <strong>Kp ≥ 5</strong></div>
+    </div>
+
+    <div class="status-card">
+      <div class="status-label">SOLAR WIND</div>
+      <div class="metric-big">420 <span class="metric-unit">km/s</span></div>
+      <div class="metric-row">
+        <div class="metric-item">
+          <span class="metric-name">Bt</span>
+          <span class="metric-val">8.4 nT</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-name">Bz</span>
+          <span class="metric-val negative">−4.2 nT</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-name">Density</span>
+          <span class="metric-val">6.1 p/cc</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="status-card">
+      <div class="status-label">NOAA SCALES</div>
+      <div class="noaa-scales">
+        <div class="scale-item">
+          <span class="scale-letter">R</span>
+          <span class="scale-name">Radio</span>
+          <span class="badge badge-green">R0</span>
+        </div>
+        <div class="scale-item">
+          <span class="scale-letter">S</span>
+          <span class="scale-name">Solar Radiation</span>
+          <span class="badge badge-green">S0</span>
+        </div>
+        <div class="scale-item">
+          <span class="scale-letter">G</span>
+          <span class="scale-name">Geomagnetic</span>
+          <span class="badge badge-yellow">G1</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="status-card">
+      <div class="status-label">HEMISPHERIC POWER</div>
+      <div class="metric-big">42 <span class="metric-unit">GW</span></div>
+      <div class="power-bar-wrap">
+        <div class="power-bar">
+          <div class="power-fill" style="width: 42%"></div>
+        </div>
+        <div class="power-labels">
+          <span>0</span><span>50</span><span>100 GW</span>
+        </div>
+      </div>
+      <div class="status-sub">Northern Hemisphere</div>
+    </div>
+  </section>
+
+  <!-- Page subtitle -->
+  <h2 class="section-heading">Live Aurora Cameras</h2>
+
+  <!-- Livestream Grid (2×2 cards) -->
+  <section class="stream-grid">
+    <!-- Card 1: Tromsø, Norway -->
+    <div class="stream-card">
+      <div class="stream-embed">
+        <iframe
+          src="https://www.youtube.com/embed/live_stream?channel=UCVTomc35agH1SM6kCKzwW_g"
+          title="Aurora live feed – Tromsø Norway"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+        <div class="embed-fallback">
+          <div class="fallback-icon">◈</div>
+          <p>Tromsø, Norway — Live Sky Cam</p>
+          <p class="fallback-sub">Northern lights capital of the world</p>
+          <a href="https://www.youtube.com/@NorthernLightsLive" target="_blank" rel="noopener" class="btn-watch">Watch on YouTube →</a>
+        </div>
+      </div>
+      <div class="stream-info">
+        <div class="stream-meta">
+          <span class="stream-location">📍 Tromsø, Norway · 69°N</span>
+          <span class="badge badge-green"><span class="pulse-dot"></span>LIVE</span>
+        </div>
+        <p class="stream-desc">Prime Arctic viewing location above the auroral oval. Clear skies tonight.</p>
+      </div>
+    </div>
+
+    <!-- Card 2: Fairbanks, Alaska -->
+    <div class="stream-card">
+      <div class="stream-embed">
+        <iframe
+          src="https://www.youtube.com/embed/live_stream?channel=UCkVRmYKLZuMNDf4PFWd_YWA"
+          title="Aurora live feed – Fairbanks Alaska"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+        <div class="embed-fallback">
+          <div class="fallback-icon">◈</div>
+          <p>Fairbanks, Alaska — All-Sky Camera</p>
+          <p class="fallback-sub">Poker Flat Research Range, UAF</p>
+          <a href="https://www.gi.alaska.edu/monitors/aurora-forecast" target="_blank" rel="noopener" class="btn-watch">View Feed →</a>
+        </div>
+      </div>
+      <div class="stream-info">
+        <div class="stream-meta">
+          <span class="stream-location">📍 Fairbanks, Alaska · 64°N</span>
+          <span class="badge badge-green"><span class="pulse-dot"></span>LIVE</span>
+        </div>
+        <p class="stream-desc">All-sky fisheye cam operated by UAF Geophysical Institute. Updates every 10 min.</p>
+      </div>
+    </div>
+
+    <!-- Card 3: NOAA Aurora Oval Map -->
+    <div class="stream-card">
+      <div class="stream-embed map-embed">
+        <img
+          src="https://services.swpc.noaa.gov/images/animations/ovation/north/latest.jpg"
+          alt="NOAA Aurora Oval forecast map – Northern Hemisphere"
+          class="oval-map"
+          loading="lazy"
+        />
+      </div>
+      <div class="stream-info">
+        <div class="stream-meta">
+          <span class="stream-location">🌍 Northern Hemisphere · NOAA OVATION</span>
+          <span class="badge badge-cyan">30-MIN FORECAST</span>
+        </div>
+        <p class="stream-desc">Real-time aurora oval probability map. Brighter = higher aurora intensity. Updated every 5 minutes.</p>
+      </div>
+    </div>
+
+    <!-- Card 4: Solar Wind Real-Time Data -->
+    <div class="stream-card">
+      <div class="stream-embed data-embed">
+        <div class="data-visual">
+          <div class="data-grid-title">REAL-TIME SPACE WEATHER</div>
+          <div class="data-panels">
+            <div class="data-panel">
+              <span class="dp-label">Solar Wind Speed</span>
+              <div class="dp-bar-wrap">
+                <div class="dp-bar">
+                  <div class="dp-fill speed-fill" style="width: 55%"></div>
+                </div>
+              </div>
+              <span class="dp-value">420 km/s</span>
+            </div>
+            <div class="data-panel">
+              <span class="dp-label">Bz Component</span>
+              <div class="dp-bar-wrap bz-bar-wrap">
+                <div class="dp-bz-center"></div>
+                <div class="dp-bz-fill" style="left: 50%; width: 21%; background: var(--accent-red)"></div>
+              </div>
+              <span class="dp-value negative">−4.2 nT (Southward)</span>
+            </div>
+            <div class="data-panel">
+              <span class="dp-label">Proton Density</span>
+              <div class="dp-bar-wrap">
+                <div class="dp-bar">
+                  <div class="dp-fill density-fill" style="width: 31%"></div>
+                </div>
+              </div>
+              <span class="dp-value">6.1 p/cc</span>
+            </div>
+            <div class="data-panel">
+              <span class="dp-label">10.7cm Radio Flux</span>
+              <div class="dp-bar-wrap">
+                <div class="dp-bar">
+                  <div class="dp-fill flux-fill" style="width: 68%"></div>
+                </div>
+              </div>
+              <span class="dp-value">148 sfu</span>
+            </div>
+          </div>
+          <p class="data-source">Source: NOAA DSCOVR/ACE · Refreshes every 60s</p>
+        </div>
+      </div>
+      <div class="stream-info">
+        <div class="stream-meta">
+          <span class="stream-location">🛰️ DSCOVR Satellite · L1 Point</span>
+          <span class="badge badge-purple">LIVE DATA</span>
+        </div>
+        <p class="stream-desc">Real-time solar wind measurements from NOAA's DSCOVR satellite at Lagrange Point 1.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visibility Forecast Section -->
+  <h2 class="section-heading">Tonight's Visibility Forecast</h2>
+  <section class="forecast-section">
+    <div class="forecast-map-card card">
+      <div class="card-title">Aurora Visibility by Kp Level</div>
+      <div class="kp-visibility-grid">
+        <div class="kp-vis-item">
+          <div class="kp-vis-badge kp-3">Kp 3</div>
+          <div class="kp-vis-desc">
+            <strong>Visible at 65°N+</strong>
+            <span>Iceland, northern Norway, Alaska, northern Canada</span>
+          </div>
+        </div>
+        <div class="kp-vis-item">
+          <div class="kp-vis-badge kp-5">Kp 5</div>
+          <div class="kp-vis-desc">
+            <strong>Visible at 60°N+</strong>
+            <span>Southern Norway, Scotland, southern Canada, northern US border</span>
+          </div>
+        </div>
+        <div class="kp-vis-item">
+          <div class="kp-vis-badge kp-7">Kp 7</div>
+          <div class="kp-vis-desc">
+            <strong>Visible at 50°N+</strong>
+            <span>Northern Germany, central Canada, northern US states</span>
+          </div>
+        </div>
+        <div class="kp-vis-item">
+          <div class="kp-vis-badge kp-9">Kp 9</div>
+          <div class="kp-vis-desc">
+            <strong>Visible at 40°N+</strong>
+            <span>Southern Europe, mid-US states — Major geomagnetic storm</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="forecast-tonight card">
+      <div class="card-title">Activity Outlook</div>
+      <div class="outlook-grid">
+        <div class="outlook-day">
+          <span class="outlook-label">Tonight</span>
+          <div class="outlook-kp">Kp 3–4</div>
+          <span class="badge badge-yellow">POSSIBLE</span>
+          <p class="outlook-note">Elevated activity expected after 22:00 local. Best viewing: 11pm–2am.</p>
+        </div>
+        <div class="outlook-day">
+          <span class="outlook-label">Tomorrow</span>
+          <div class="outlook-kp">Kp 2–3</div>
+          <span class="badge badge-green">QUIET</span>
+          <p class="outlook-note">Activity expected to decrease. Polar regions only.</p>
+        </div>
+      </div>
+      <div class="viewing-tips">
+        <div class="tip-title">QUICK VIEWING TIPS</div>
+        <ul class="tip-list">
+          <li>Find dark sky away from city lights</li>
+          <li>Allow 20 min for eyes to dark-adapt</li>
+          <li>Face north — look for faint green glow</li>
+          <li>Use a camera: sensors detect aurora better than eyes</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* ─── Alert Banner ─── */
+  .alert-banner {
+    background: rgba(16, 20, 49, 0.7);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin-bottom: 32px;
+    backdrop-filter: blur(8px);
+  }
+
+  .alert-inner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 13px;
+  }
+
+  .alert-text { color: var(--text-muted); flex: 1; }
+  .alert-text strong { color: var(--text-white); }
+
+  .alert-link {
+    color: var(--accent-cyan);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  .alert-link:hover { text-decoration: underline; }
+
+  /* ─── Status Row ─── */
+  .status-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .status-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 20px;
+  }
+
+  .status-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+
+  .status-sub {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 10px;
+  }
+
+  /* Kp Meter */
+  .kp-meter { display: flex; align-items: flex-end; gap: 12px; }
+
+  .kp-track {
+    display: flex;
+    gap: 3px;
+    align-items: flex-end;
+  }
+
+  .kp-bar {
+    width: 14px;
+    height: 32px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    position: relative;
+    transition: background 0.3s;
+  }
+
+  .kp-active { background: rgba(57, 255, 138, 0.6); }
+  .kp-warn   { background: rgba(251, 191, 36, 0.25); }
+  .kp-danger { background: rgba(248, 113, 113, 0.25); }
+
+  .kp-label {
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 9px;
+    color: var(--text-dim);
+  }
+
+  .kp-value {
+    font-family: var(--font-display);
+    font-size: 42px;
+    line-height: 1;
+    color: var(--accent-green);
+    text-shadow: 0 0 20px rgba(57, 255, 138, 0.6);
+  }
+
+  .kp-unit { font-size: 18px; color: var(--text-muted); }
+
+  /* Metric big */
+  .metric-big {
+    font-family: var(--font-display);
+    font-size: 40px;
+    line-height: 1;
+    color: var(--accent-cyan);
+    text-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+    margin-bottom: 12px;
+  }
+  .metric-unit { font-size: 18px; color: var(--text-muted); }
+
+  .metric-row {
+    display: flex;
+    gap: 16px;
+  }
+
+  .metric-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .metric-name { font-size: 10px; color: var(--text-dim); letter-spacing: 0.1em; }
+  .metric-val  { font-size: 14px; color: var(--text-white); font-weight: 500; }
+  .negative    { color: var(--accent-red); }
+
+  /* NOAA Scales */
+  .noaa-scales { display: flex; flex-direction: column; gap: 8px; }
+
+  .scale-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .scale-letter {
+    font-family: var(--font-display);
+    font-size: 20px;
+    width: 20px;
+    color: var(--text-muted);
+  }
+
+  .scale-name {
+    font-size: 12px;
+    color: var(--text-muted);
+    flex: 1;
+  }
+
+  /* Power bar */
+  .power-bar-wrap { margin: 10px 0 4px; }
+
+  .power-bar {
+    height: 8px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 4px;
+  }
+
+  .power-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
+    border-radius: 4px;
+    box-shadow: 0 0 8px rgba(57, 255, 138, 0.5);
+  }
+
+  .power-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 9px;
+    color: var(--text-dim);
+  }
+
+  /* ─── Section headings ─── */
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 3vw, 32px);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-white);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  /* ─── Stream Grid ─── */
+  .stream-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 56px;
+  }
+
+  .stream-card {
+    background: var(--bg-card);
+    border: 3px solid rgba(255,255,255,0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  .stream-card:hover {
+    border-color: var(--border-glow);
+    box-shadow: 0 0 30px rgba(120, 80, 255, 0.2);
+  }
+
+  .stream-embed {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 */
+    background: #080a18;
+    overflow: hidden;
+  }
+
+  .stream-embed iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .embed-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #080a18, #101431);
+    color: var(--text-muted);
+    text-align: center;
+    padding: 20px;
+  }
+
+  .fallback-icon {
+    font-size: 40px;
+    color: var(--accent-purple);
+    opacity: 0.6;
+    margin-bottom: 8px;
+  }
+
+  .embed-fallback p { font-size: 14px; color: var(--text-white); font-weight: 500; }
+  .fallback-sub     { font-size: 12px; color: var(--text-muted) !important; font-weight: 400 !important; }
+
+  .btn-watch {
+    margin-top: 12px;
+    padding: 8px 18px;
+    border: 1px solid var(--accent-purple);
+    color: var(--accent-purple);
+    text-decoration: none;
+    font-size: 12px;
+    border-radius: 2px;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .btn-watch:hover {
+    background: var(--accent-purple);
+    color: var(--text-white);
+  }
+
+  /* Map embed */
+  .map-embed { padding-top: 56.25%; }
+
+  .oval-map {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(1.3) brightness(1.1);
+  }
+
+  /* Data visual embed */
+  .data-embed { padding-top: 0; height: auto; position: relative; }
+
+  .data-visual {
+    padding: 24px;
+    background: linear-gradient(135deg, #080a18, #0a0e24);
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .data-grid-title {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .data-panels { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+
+  .data-panel { display: flex; flex-direction: column; gap: 4px; }
+
+  .dp-label { font-size: 11px; color: var(--text-muted); letter-spacing: 0.05em; }
+  .dp-value { font-size: 12px; color: var(--text-white); font-weight: 500; }
+
+  .dp-bar-wrap { position: relative; }
+  .dp-bar { height: 5px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+
+  .dp-fill {
+    height: 100%;
+    border-radius: 3px;
+  }
+
+  .speed-fill   { background: linear-gradient(90deg, var(--accent-cyan), var(--accent-green)); box-shadow: 0 0 6px rgba(34,211,238,0.5); }
+  .density-fill { background: linear-gradient(90deg, var(--accent-purple), var(--accent-magenta)); box-shadow: 0 0 6px rgba(168,85,247,0.5); }
+  .flux-fill    { background: linear-gradient(90deg, var(--accent-yellow), #f97316); box-shadow: 0 0 6px rgba(251,191,36,0.5); }
+
+  .bz-bar-wrap {
+    position: relative;
+    height: 5px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 3px;
+    overflow: visible;
+  }
+
+  .dp-bz-center {
+    position: absolute;
+    left: 50%;
+    top: -2px;
+    width: 1px;
+    height: 9px;
+    background: rgba(255,255,255,0.3);
+  }
+
+  .dp-bz-fill {
+    position: absolute;
+    top: 0;
+    height: 5px;
+    border-radius: 3px;
+    box-shadow: 0 0 6px rgba(248,113,113,0.5);
+  }
+
+  .data-source {
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-top: auto;
+  }
+
+  /* Stream info */
+  .stream-info {
+    padding: 14px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .stream-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .stream-location { font-size: 12px; color: var(--text-muted); }
+
+  .stream-desc { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+
+  /* ─── Forecast Section ─── */
+  .forecast-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .kp-visibility-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .kp-vis-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .kp-vis-badge {
+    font-family: var(--font-display);
+    font-size: 18px;
+    letter-spacing: 0.05em;
+    padding: 4px 10px;
+    border-radius: 2px;
+    white-space: nowrap;
+    min-width: 58px;
+    text-align: center;
+  }
+
+  .kp-3 { background: rgba(57,255,138,0.15); color: var(--accent-green); border: 1px solid rgba(57,255,138,0.3); }
+  .kp-5 { background: rgba(251,191,36,0.15); color: var(--accent-yellow); border: 1px solid rgba(251,191,36,0.3); }
+  .kp-7 { background: rgba(249,115,22,0.15); color: #f97316; border: 1px solid rgba(249,115,22,0.3); }
+  .kp-9 { background: rgba(248,113,113,0.15); color: var(--accent-red); border: 1px solid rgba(248,113,113,0.3); }
+
+  .kp-vis-desc {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .kp-vis-desc strong { font-size: 13px; color: var(--text-white); }
+  .kp-vis-desc span   { font-size: 12px; color: var(--text-muted); }
+
+  /* Outlook */
+  .outlook-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+
+  .outlook-day {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+  }
+
+  .outlook-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    font-weight: 600;
+  }
+
+  .outlook-kp {
+    font-family: var(--font-display);
+    font-size: 28px;
+    color: var(--text-white);
+  }
+
+  .outlook-note {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-top: 4px;
+  }
+
+  .viewing-tips {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 16px;
+  }
+
+  .tip-title {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .tip-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .tip-list li {
+    font-size: 12px;
+    color: var(--text-muted);
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .tip-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent-green);
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 1100px) {
+    .status-row   { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .status-row       { grid-template-columns: 1fr; }
+    .stream-grid      { grid-template-columns: 1fr; }
+    .forecast-section { grid-template-columns: 1fr; }
+    .outlook-grid     { grid-template-columns: 1fr; }
+  }
+</style>

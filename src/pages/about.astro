@@ -1,0 +1,716 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="About"
+  description="Learn about aurora borealis — what causes the northern lights, how to see them, and how space weather is monitored."
+>
+  <!-- Page Hero -->
+  <div class="about-hero">
+    <h1 class="hero-title">WHAT IS THE AURORA?</h1>
+    <p class="hero-sub">
+      The aurora borealis — or northern lights — is one of Earth's most spectacular natural phenomena.
+      Caused by charged particles from the Sun interacting with Earth's magnetosphere, auroras paint
+      the night sky in ribbons of green, purple, magenta, and white.
+    </p>
+  </div>
+
+  <!-- Science Section -->
+  <section class="content-section">
+    <h2 class="section-heading">How Auroras Form</h2>
+    <div class="science-grid">
+      <div class="science-step card">
+        <div class="step-number">01</div>
+        <div class="step-icon">☀️</div>
+        <h3 class="step-title">Solar Wind</h3>
+        <p class="step-desc">
+          The Sun constantly emits a stream of charged particles — mostly electrons and protons —
+          called the solar wind. During solar flares and coronal mass ejections (CMEs), this
+          outflow intensifies dramatically, sending billions of tons of magnetized plasma toward Earth.
+        </p>
+      </div>
+      <div class="science-step card">
+        <div class="step-number">02</div>
+        <div class="step-icon">🌍</div>
+        <h3 class="step-title">Magnetosphere Interaction</h3>
+        <p class="step-desc">
+          Earth's magnetic field deflects most solar wind. However, when the interplanetary magnetic
+          field tilts southward (negative Bz), it can connect with Earth's field and allow particles
+          to funnel down toward the polar regions along magnetic field lines.
+        </p>
+      </div>
+      <div class="science-step card">
+        <div class="step-number">03</div>
+        <div class="step-icon">💫</div>
+        <h3 class="step-title">Atmospheric Collision</h3>
+        <p class="step-desc">
+          Energetic particles collide with atmospheric gases at altitudes between 100–300 km.
+          Oxygen atoms emit green light at ~120 km and red at higher altitudes. Nitrogen molecules
+          produce blue and purple hues. The result: nature's most breathtaking light show.
+        </p>
+      </div>
+      <div class="science-step card">
+        <div class="step-number">04</div>
+        <div class="step-icon">🌐</div>
+        <h3 class="step-title">Auroral Oval</h3>
+        <p class="step-desc">
+          Aurora activity concentrates in a ring-shaped region around the geomagnetic poles called
+          the auroral oval. During quiet conditions this sits around 65–70°N. During strong storms
+          (Kp 7–9) it can expand to 40°N — making auroras visible across much of Europe and North America.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Space Weather Scales -->
+  <section class="content-section">
+    <h2 class="section-heading">NOAA Space Weather Scales</h2>
+    <p class="section-intro">
+      NOAA uses three scales to communicate the severity of space weather events to the public,
+      emergency services, and critical infrastructure operators.
+    </p>
+
+    <div class="scales-grid">
+      <!-- Geomagnetic -->
+      <div class="scale-card card">
+        <div class="scale-header">
+          <span class="scale-big-letter">G</span>
+          <div>
+            <div class="scale-title">Geomagnetic Storms</div>
+            <div class="scale-subtitle">Driven by Kp Index</div>
+          </div>
+        </div>
+        <div class="scale-levels">
+          <div class="level-row">
+            <span class="level-badge g1">G1</span>
+            <span class="level-kp">Kp 5</span>
+            <span class="level-desc">Minor — Aurora at 60°N+. Power grid fluctuations possible.</span>
+          </div>
+          <div class="level-row">
+            <span class="level-badge g2">G2</span>
+            <span class="level-kp">Kp 6</span>
+            <span class="level-desc">Moderate — Aurora at 55°N. High-latitude power systems affected.</span>
+          </div>
+          <div class="level-row">
+            <span class="level-badge g3">G3</span>
+            <span class="level-kp">Kp 7</span>
+            <span class="level-desc">Strong — Aurora at 50°N. Widespread voltage problems. GPS errors.</span>
+          </div>
+          <div class="level-row">
+            <span class="level-badge g4">G4</span>
+            <span class="level-kp">Kp 8</span>
+            <span class="level-desc">Severe — Aurora at 45°N. Power outages. Satellite issues.</span>
+          </div>
+          <div class="level-row">
+            <span class="level-badge g5">G5</span>
+            <span class="level-kp">Kp 9</span>
+            <span class="level-desc">Extreme — Aurora at 40°N. Widespread power outages. Carrington-class.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Solar Radiation -->
+      <div class="scale-card card">
+        <div class="scale-header">
+          <span class="scale-big-letter">S</span>
+          <div>
+            <div class="scale-title">Solar Radiation Storms</div>
+            <div class="scale-subtitle">Driven by Proton Flux (≥10 MeV)</div>
+          </div>
+        </div>
+        <div class="scale-levels">
+          <div class="level-row">
+            <span class="level-badge s1">S1</span>
+            <span class="level-kp">10 pfu</span>
+            <span class="level-desc">Minor — Weak HF radio blackouts on sunlit side.</span>
+          </div>
+          <div class="level-row">
+            <span class="level-badge s2">S2</span>
+            <span class="level-kp">100 pfu</span>
+            <span class="level-desc">Moderate — Infrequent single-event upsets in satellites.</span>
+          </div>
+          <div class="level-row">
+            <span class="level-badge s3">S3</span>
+            <span class="level-kp">1,000 pfu</span>
+            <span class="level-desc">Strong — Radiation hazard to astronauts. Memory device errors.</span>
+          </div>
+          <div class="level-row">
+            <span class="level-badge s4">S4</span>
+            <span class="level-kp">10,000 pfu</span>
+            <span class="level-desc">Severe — Star-tracker issues. HF radio blackout on entire sunlit side.</span>
+          </div>
+          <div class="level-row">
+            <span class="level-badge s5">S5</span>
+            <span class="level-kp">100,000 pfu</span>
+            <span class="level-desc">Extreme — Complete HF blackout. Severe radiation to astronauts.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Radio Blackouts -->
+      <div class="scale-card card">
+        <div class="scale-header">
+          <span class="scale-big-letter">R</span>
+          <div>
+            <div class="scale-title">Radio Blackouts</div>
+            <div class="scale-subtitle">Driven by X-ray Flux</div>
+          </div>
+        </div>
+        <div class="scale-levels">
+          <div class="level-row">
+            <span class="level-badge r1">R1</span>
+            <span class="level-kp">M1</span>
+            <span class="level-desc">Minor — Weak or minor degradation of HF radio. Occasional loss.</span>
+          </div>
+          <div class="level-row">
+            <span class="level-badge r2">R2</span>
+            <span class="level-kp">M5</span>
+            <span class="level-desc">Moderate — Limited blackout of HF radio 10–15 min. Low-frequency navigation errors.</span>
+          </div>
+          <div class="level-row">
+            <span class="level-badge r3">R3</span>
+            <span class="level-kp">X1</span>
+            <span class="level-desc">Strong — Wide area blackout of HF radio, 1 hour. Low-frequency navigation out.</span>
+          </div>
+          <div class="level-row">
+            <span class="level-badge r4">R4</span>
+            <span class="level-kp">X10</span>
+            <span class="level-desc">Severe — HF radio blackout on most of sunlit side for 1–2 hours.</span>
+          </div>
+          <div class="level-row">
+            <span class="level-badge r5">R5</span>
+            <span class="level-kp">X20</span>
+            <span class="level-desc">Extreme — Complete HF blackout on entire sunlit side for hours.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Best Places Section -->
+  <section class="content-section">
+    <h2 class="section-heading">Best Places to See Auroras</h2>
+    <div class="places-grid">
+      <div class="place-card card">
+        <div class="place-flag">🇳🇴</div>
+        <h3 class="place-name">Tromsø, Norway</h3>
+        <div class="place-lat">69.6°N</div>
+        <p class="place-desc">Inside the auroral oval for most of the year. Dark polar nights from Nov–Feb. World-class infrastructure for aurora tourism.</p>
+        <div class="place-tags">
+          <span class="badge badge-green">BEST VIEWING</span>
+          <span class="badge badge-cyan">OCT–MAR</span>
+        </div>
+      </div>
+      <div class="place-card card">
+        <div class="place-flag">🇮🇸</div>
+        <h3 class="place-name">Iceland</h3>
+        <div class="place-lat">64–66°N</div>
+        <p class="place-desc">Vast dark landscapes, minimal light pollution, and a Kp 3+ is enough for visibility. Reykjavik still has good dark sky access nearby.</p>
+        <div class="place-tags">
+          <span class="badge badge-green">HIGHLY RECOMMENDED</span>
+          <span class="badge badge-cyan">SEP–APR</span>
+        </div>
+      </div>
+      <div class="place-card card">
+        <div class="place-flag">🇫🇮</div>
+        <h3 class="place-name">Finnish Lapland</h3>
+        <div class="place-lat">68–70°N</div>
+        <p class="place-desc">Average of 200 aurora nights per year in Saariselkä. Glass-roofed cabins offer lying-in-bed viewing. Magical winter landscape.</p>
+        <div class="place-tags">
+          <span class="badge badge-green">HIGHLY RECOMMENDED</span>
+          <span class="badge badge-cyan">NOV–MAR</span>
+        </div>
+      </div>
+      <div class="place-card card">
+        <div class="place-flag">🇺🇸</div>
+        <h3 class="place-name">Fairbanks, Alaska</h3>
+        <div class="place-lat">64.8°N</div>
+        <p class="place-desc">Home to Poker Flat Research Range, the world's largest land-based rocket research facility. Clear, cold nights make for excellent aurora viewing.</p>
+        <div class="place-tags">
+          <span class="badge badge-yellow">GOOD OPTION</span>
+          <span class="badge badge-cyan">OCT–MAR</span>
+        </div>
+      </div>
+      <div class="place-card card">
+        <div class="place-flag">🇨🇦</div>
+        <h3 class="place-name">Yukon, Canada</h3>
+        <div class="place-lat">60–65°N</div>
+        <p class="place-desc">Whitehorse sits directly under the auroral oval. Extremely clear skies and low humidity make for sharp, vivid displays from Sept–April.</p>
+        <div class="place-tags">
+          <span class="badge badge-green">HIGHLY RECOMMENDED</span>
+          <span class="badge badge-cyan">AUG–APR</span>
+        </div>
+      </div>
+      <div class="place-card card">
+        <div class="place-flag">🇳🇿</div>
+        <h3 class="place-name">New Zealand (South)</h3>
+        <div class="place-lat">44–46°S</div>
+        <p class="place-desc">Aurora Australis (southern lights) visible from Otago and Fiordland, especially during strong storms. Kp 5+ usually needed.</p>
+        <div class="place-tags">
+          <span class="badge badge-purple">AURORA AUSTRALIS</span>
+          <span class="badge badge-cyan">MAR–SEP</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photography Section -->
+  <section class="content-section">
+    <h2 class="section-heading">Aurora Photography Guide</h2>
+    <div class="photo-guide card">
+      <div class="photo-cols">
+        <div class="photo-col">
+          <h3 class="photo-col-title">Camera Settings</h3>
+          <div class="settings-list">
+            <div class="setting-row">
+              <span class="setting-name">ISO</span>
+              <span class="setting-val">800 – 3200</span>
+              <span class="setting-note">Start at 1600, adjust for conditions</span>
+            </div>
+            <div class="setting-row">
+              <span class="setting-name">Aperture</span>
+              <span class="setting-val">f/1.8 – f/2.8</span>
+              <span class="setting-note">As wide as your lens allows</span>
+            </div>
+            <div class="setting-row">
+              <span class="setting-name">Shutter</span>
+              <span class="setting-val">5 – 25 sec</span>
+              <span class="setting-note">Faster for active aurora to avoid blur</span>
+            </div>
+            <div class="setting-row">
+              <span class="setting-name">Focus</span>
+              <span class="setting-val">Manual ∞</span>
+              <span class="setting-note">Auto-focus will struggle in the dark</span>
+            </div>
+            <div class="setting-row">
+              <span class="setting-name">White Balance</span>
+              <span class="setting-val">3500 – 4500K</span>
+              <span class="setting-note">Or shoot RAW and adjust later</span>
+            </div>
+            <div class="setting-row">
+              <span class="setting-name">Format</span>
+              <span class="setting-val">RAW</span>
+              <span class="setting-note">Essential for post-processing flexibility</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="photo-col">
+          <h3 class="photo-col-title">Gear Checklist</h3>
+          <ul class="gear-list">
+            <li><span class="gear-check">✓</span> Wide-angle lens (14–24mm recommended)</li>
+            <li><span class="gear-check">✓</span> Sturdy tripod — essential in the cold</li>
+            <li><span class="gear-check">✓</span> Extra batteries (cold drains them fast)</li>
+            <li><span class="gear-check">✓</span> Remote shutter release or timer</li>
+            <li><span class="gear-check">✓</span> Head torch with red mode</li>
+            <li><span class="gear-check">✓</span> Lens cloth (watch for condensation)</li>
+            <li><span class="gear-check">✓</span> Hand warmers — for you and the battery</li>
+            <li><span class="gear-check">✓</span> Aurora forecast app (Space Weather by NOAA)</li>
+          </ul>
+
+          <h3 class="photo-col-title" style="margin-top: 24px;">Composing Your Shot</h3>
+          <ul class="gear-list">
+            <li><span class="gear-check">→</span> Include a dark foreground for scale</li>
+            <li><span class="gear-check">→</span> Trees, mountains, or water reflections add drama</li>
+            <li><span class="gear-check">→</span> Point slightly north — that's where the action is</li>
+            <li><span class="gear-check">→</span> Milky Way can coexist with mild aurora nights</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resources Section -->
+  <section class="content-section">
+    <h2 class="section-heading">Monitoring Resources</h2>
+    <div class="resources-grid">
+      <a href="https://www.swpc.noaa.gov/communities/aurora-dashboard-experimental" target="_blank" rel="noopener" class="resource-card card">
+        <div class="resource-logo">NOAA</div>
+        <div class="resource-info">
+          <h3 class="resource-title">NOAA Aurora Dashboard</h3>
+          <p class="resource-desc">Official US government space weather forecasting. Real-time Kp index, aurora oval maps, solar wind data, and 3-day outlooks.</p>
+        </div>
+        <span class="resource-arrow">→</span>
+      </a>
+      <a href="https://www.spaceweather.com/" target="_blank" rel="noopener" class="resource-card card">
+        <div class="resource-logo">SW</div>
+        <div class="resource-info">
+          <h3 class="resource-title">SpaceWeather.com</h3>
+          <p class="resource-desc">Daily space weather news, solar images, and aurora alert subscriptions. Great for learning about current solar activity.</p>
+        </div>
+        <span class="resource-arrow">→</span>
+      </a>
+      <a href="https://www.gi.alaska.edu/monitors/aurora-forecast" target="_blank" rel="noopener" class="resource-card card">
+        <div class="resource-logo">UAF</div>
+        <div class="resource-info">
+          <h3 class="resource-title">UAF Aurora Forecast</h3>
+          <p class="resource-desc">University of Alaska Fairbanks Geophysical Institute. Regional aurora forecasts and all-sky camera feeds from Alaska.</p>
+        </div>
+        <span class="resource-arrow">→</span>
+      </a>
+      <a href="https://services.swpc.noaa.gov/images/animations/ovation/north/latest.jpg" target="_blank" rel="noopener" class="resource-card card">
+        <div class="resource-logo">OVT</div>
+        <div class="resource-info">
+          <h3 class="resource-title">OVATION Aurora Model</h3>
+          <p class="resource-desc">NOAA's real-time aurora oval forecast model. 30-minute probabilistic prediction of aurora intensity and location globally.</p>
+        </div>
+        <span class="resource-arrow">→</span>
+      </a>
+      <a href="https://kp.gfz-potsdam.de/" target="_blank" rel="noopener" class="resource-card card">
+        <div class="resource-logo">GFZ</div>
+        <div class="resource-info">
+          <h3 class="resource-title">GFZ Kp Index</h3>
+          <p class="resource-desc">Official Kp index data from the German Research Centre for Geosciences. Historical data, real-time values, and forecasts.</p>
+        </div>
+        <span class="resource-arrow">→</span>
+      </a>
+      <a href="https://aurorasaurus.org/" target="_blank" rel="noopener" class="resource-card card">
+        <div class="resource-logo">A★</div>
+        <div class="resource-info">
+          <h3 class="resource-title">Aurorasaurus</h3>
+          <p class="resource-desc">Citizen science platform for real-time aurora sightings. Community reports help map actual visibility beyond model predictions.</p>
+        </div>
+        <span class="resource-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="content-section">
+    <h2 class="section-heading">Frequently Asked Questions</h2>
+    <div class="faq-grid">
+      <div class="faq-item card">
+        <h3 class="faq-q">What Kp level do I need to see the aurora?</h3>
+        <p class="faq-a">It depends on your latitude. At 65°N (Iceland, Tromsø), Kp 3 is enough. At 55°N (Scotland, southern Norway), you need Kp 5+. In central Europe or the northern US, you typically need Kp 7 or higher. During the extreme G5 storm of May 2024, aurora was visible as far south as Florida and Texas.</p>
+      </div>
+      <div class="faq-item card">
+        <h3 class="faq-q">Why does Bz southward enhance aurora activity?</h3>
+        <p class="faq-a">When the interplanetary magnetic field (IMF) Bz component points south, it can "reconnect" with Earth's northward-pointing magnetic field in a process called magnetic reconnection. This opens a window allowing solar wind particles to enter the magnetosphere and flow toward the poles, dramatically increasing aurora activity.</p>
+      </div>
+      <div class="faq-item card">
+        <h3 class="faq-q">What causes different aurora colors?</h3>
+        <p class="faq-a">Colors depend on which gas is excited and at what altitude. Oxygen at ~100 km produces the most common green. Oxygen at higher altitudes (200–300 km) creates red. Nitrogen molecules at low altitudes emit blue and purple. The rare all-red "SAR arc" appears during very strong storms.</p>
+      </div>
+      <div class="faq-item card">
+        <h3 class="faq-q">Are we near solar maximum?</h3>
+        <p class="faq-a">Solar Cycle 25 is currently near or past its peak. NOAA predicted the maximum around mid-2025, meaning 2024–2026 represents some of the best aurora viewing conditions in over a decade. The historic G5 storm of May 2024 demonstrated this dramatically with global aurora visibility.</p>
+      </div>
+      <div class="faq-item card">
+        <h3 class="faq-q">How far in advance can aurora be forecast?</h3>
+        <p class="faq-a">Reliable forecasting is limited to about 1–3 days. When a CME is detected leaving the Sun, scientists can predict when it'll reach Earth within a few hours. Once the solar wind reaches the DSCOVR satellite at L1 (about 1.5M km from Earth), there's 15–60 minutes of advance warning.</p>
+      </div>
+      <div class="faq-item card">
+        <h3 class="faq-q">Can I see aurora with the naked eye?</h3>
+        <p class="faq-a">Yes! During moderate to strong events (Kp 5+), aurora is clearly visible with the naked eye from mid-to-high latitudes. Cameras — even phone cameras — often detect fainter displays that eyes miss, since sensors are more sensitive to green wavelengths in low light. Never dismiss a faint glow without taking a photo first.</p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* ─── Hero ─── */
+  .about-hero {
+    margin-bottom: 56px;
+    max-width: 820px;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 6vw, 72px);
+    letter-spacing: 0.06em;
+    color: var(--text-white);
+    margin-bottom: 20px;
+    text-shadow:
+      0 0 40px rgba(57, 255, 138, 0.4),
+      0 0 80px rgba(168, 85, 247, 0.2);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-muted);
+    max-width: 700px;
+  }
+
+  /* ─── Content sections ─── */
+  .content-section {
+    margin-bottom: 64px;
+  }
+
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: clamp(20px, 3vw, 30px);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-white);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .section-intro {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 24px;
+    max-width: 700px;
+  }
+
+  /* ─── Science steps ─── */
+  .science-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .science-step {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+  }
+
+  .step-number {
+    font-family: var(--font-display);
+    font-size: 48px;
+    color: rgba(255,255,255,0.06);
+    line-height: 1;
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    letter-spacing: 0.02em;
+  }
+
+  .step-icon { font-size: 28px; }
+
+  .step-title {
+    font-family: var(--font-display);
+    font-size: 20px;
+    letter-spacing: 0.05em;
+    color: var(--text-white);
+    text-transform: uppercase;
+  }
+
+  .step-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* ─── Scales grid ─── */
+  .scales-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .scale-card { display: flex; flex-direction: column; gap: 20px; }
+
+  .scale-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .scale-big-letter {
+    font-family: var(--font-display);
+    font-size: 64px;
+    line-height: 1;
+    color: var(--text-white);
+    text-shadow: 0 0 30px rgba(255,255,255,0.3);
+  }
+
+  .scale-title    { font-size: 15px; font-weight: 600; color: var(--text-white); }
+  .scale-subtitle { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+  .scale-levels { display: flex; flex-direction: column; gap: 10px; }
+
+  .level-row {
+    display: grid;
+    grid-template-columns: 36px 60px 1fr;
+    gap: 8px;
+    align-items: start;
+    font-size: 12px;
+  }
+
+  .level-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 6px;
+    border-radius: 2px;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+
+  .level-kp  { color: var(--text-muted); font-size: 11px; align-self: center; }
+  .level-desc { color: var(--text-dim); line-height: 1.5; }
+
+  /* G scale colors */
+  .g1 { background: rgba(57,255,138,0.2); color: #39ff8a; }
+  .g2 { background: rgba(162,255,57,0.2); color: #a2ff39; }
+  .g3 { background: rgba(251,191,36,0.2); color: #fbbf24; }
+  .g4 { background: rgba(249,115,22,0.2); color: #f97316; }
+  .g5 { background: rgba(248,113,113,0.2); color: #f87171; }
+
+  /* S scale colors */
+  .s1 { background: rgba(34,211,238,0.2); color: #22d3ee; }
+  .s2 { background: rgba(96,165,250,0.2); color: #60a5fa; }
+  .s3 { background: rgba(168,85,247,0.2); color: #a855f7; }
+  .s4 { background: rgba(232,121,249,0.2); color: #e879f9; }
+  .s5 { background: rgba(248,113,113,0.2); color: #f87171; }
+
+  /* R scale colors */
+  .r1 { background: rgba(57,255,138,0.2); color: #39ff8a; }
+  .r2 { background: rgba(251,191,36,0.2); color: #fbbf24; }
+  .r3 { background: rgba(249,115,22,0.2); color: #f97316; }
+  .r4 { background: rgba(248,113,113,0.2); color: #f87171; }
+  .r5 { background: rgba(239,68,68,0.3); color: #ef4444; }
+
+  /* ─── Places grid ─── */
+  .places-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .place-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .place-flag { font-size: 32px; }
+  .place-name { font-size: 15px; font-weight: 600; color: var(--text-white); }
+  .place-lat  { font-size: 11px; color: var(--accent-cyan); letter-spacing: 0.05em; }
+  .place-desc { font-size: 12px; color: var(--text-muted); line-height: 1.6; flex: 1; }
+  .place-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+
+  /* ─── Photo guide ─── */
+  .photo-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .photo-col-title {
+    font-family: var(--font-display);
+    font-size: 18px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-white);
+    margin-bottom: 16px;
+  }
+
+  .settings-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .setting-row {
+    display: grid;
+    grid-template-columns: 100px 100px 1fr;
+    gap: 12px;
+    align-items: start;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .setting-name  { font-size: 12px; font-weight: 600; color: var(--text-white); }
+  .setting-val   { font-size: 12px; color: var(--accent-cyan); font-weight: 500; }
+  .setting-note  { font-size: 11px; color: var(--text-muted); line-height: 1.4; }
+
+  .gear-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .gear-list li {
+    font-size: 13px;
+    color: var(--text-muted);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+
+  .gear-check { color: var(--accent-green); font-weight: 700; flex-shrink: 0; }
+
+  /* ─── Resources ─── */
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .resource-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+  }
+
+  .resource-card:hover {
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.15);
+    transform: translateY(-2px);
+  }
+
+  .resource-logo {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    background: rgba(34, 211, 238, 0.1);
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    flex-shrink: 0;
+    letter-spacing: 0.05em;
+  }
+
+  .resource-info { flex: 1; }
+  .resource-title { font-size: 14px; font-weight: 600; color: var(--text-white); margin-bottom: 6px; }
+  .resource-desc  { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+  .resource-arrow { color: var(--accent-cyan); font-size: 16px; flex-shrink: 0; align-self: center; }
+
+  /* ─── FAQ ─── */
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .faq-item { display: flex; flex-direction: column; gap: 10px; }
+  .faq-q { font-size: 14px; font-weight: 600; color: var(--text-white); line-height: 1.5; }
+  .faq-a { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 1100px) {
+    .science-grid   { grid-template-columns: repeat(2, 1fr); }
+    .scales-grid    { grid-template-columns: 1fr; }
+    .places-grid    { grid-template-columns: repeat(2, 1fr); }
+    .resources-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .science-grid   { grid-template-columns: 1fr; }
+    .places-grid    { grid-template-columns: 1fr; }
+    .photo-cols     { grid-template-columns: 1fr; }
+    .resources-grid { grid-template-columns: 1fr; }
+    .faq-grid       { grid-template-columns: 1fr; }
+    .level-row      { grid-template-columns: 36px 1fr; }
+    .level-kp       { display: none; }
+    .setting-row    { grid-template-columns: 90px 1fr; }
+    .setting-note   { display: none; }
+  }
+</style>
